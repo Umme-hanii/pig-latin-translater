@@ -1,0 +1,34 @@
+h1 {
+  text-align: center;
+  color: darkolivegreen;
+}
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.container div {
+  margin: 2rem;
+  padding: 2rem;
+  border: 2rem solid #B9D08B;
+  width: 30rem;
+  height: 10rem;
+}
+
+.container div textarea {
+  border: none;
+}
+
+#translate {
+  background-color: #B9D08B;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  border: 5px solid darkolivegreen;
+}
+
+#translate:hover {
+  background-color: darkolivegreen;
+  cursor: pointer;
+}
