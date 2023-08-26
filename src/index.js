@@ -4,10 +4,17 @@ let userInput = document.getElementById("user-input")
 let translatedPara = document.getElementById("pig-latin")
 
 let translateBtn = document.getElementById("translate")
+let generateBtn = document.getElementById("generate")
 
 translateBtn.addEventListener("click", () => {
   let text = userInput.value
   translatedPara.innerHTML = pigLatin(text)
+})
+
+generateBtn.addEventListener("click", () => {
+  userInput.value = generateSentence()
+
+  translatedPara.innerHTML = pigLatin(userInput.value)
 })
 
 //split sentence at spaces
@@ -52,4 +59,22 @@ function transformEachWord(word) {
   }
 
   return translatedWord
+}
+
+//Generate random sentence
+function generateSentence() {
+  const subjects = ["I", "You", "He", "She", "They", "We"]
+  const verbs = ["eat", "sleep", "run", "play", "write"]
+  const objects = ["an apple", "a book", "the game", "music", "a letter"]
+
+  let subject = generateWord(subjects)
+  let verb = generateWord(verbs)
+  let object = generateWord(objects)
+
+  return `${subject} ${verb} ${object}`
+}
+
+function generateWord(arr) {
+  const randomIndex = Math.floor(Math.random() * arr.length)
+  return arr[randomIndex]
 }
