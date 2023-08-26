@@ -62,10 +62,9 @@ function transformEachWord(word) {
   // Rule 4: For words with punctuation
   // Move the punctuation to the end of the Pig Latin word.
   let PunctuationsArr = detectPunctuation(word)
-  if (PunctuationsArr.length > 0) {
+  if (PunctuationsArr) {
     for (let i = 0; i < PunctuationsArr.length; i++) {
       const index = translatedWord.indexOf(PunctuationsArr[i])
-      console.log(index)
       translatedWord = `${translatedWord.slice(0, index)}${translatedWord.slice(
         index + 1
       )}${translatedWord[index]}`
