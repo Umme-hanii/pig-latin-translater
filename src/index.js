@@ -34,6 +34,7 @@ function pigLatin(sentence) {
 function transformEachWord(word) {
   const vowels = ["a", "e", "i", "o", "u"]
   let translatedWord = ""
+
   // Rule 2: Words that begin with a vowel sound
   if (vowels.includes(word.charAt(0).toLowerCase())) {
     translatedWord = `${word}way`
@@ -58,7 +59,28 @@ function transformEachWord(word) {
       .toLowerCase()}`
   }
 
+  // Rule 4: For words with punctuation
+  // Move the punctuation to the end of the Pig Latin word.
+  let PunctuationsArr = detectPunctuation(word)
+  if (PunctuationsArr.length > 0) {
+    for (let i = 0; i < PunctuationsArr.length; i++) {
+      const index = translatedWord.indexOf(PunctuationsArr[i])
+      console.log(index)
+      translatedWord = `${translatedWord.slice(0, index)}${translatedWord.slice(
+        index + 1
+      )}${translatedWord[index]}`
+    }
+  }
+
   return translatedWord
+}
+
+//Check if there are any punctuation marks present in the input
+function detectPunctuation(word) {
+  const puctuationRegex = /[!"#$%&'()*+,-./:;=?@[\]^_`{|}~]/g
+
+  const punctuations = word.match(puctuationRegex)
+  return punctuations.length > 0 ? punctuations : []
 }
 
 //Generate random sentence
