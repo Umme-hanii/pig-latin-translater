@@ -7,7 +7,7 @@ let translateBtn = document.getElementById("translate")
 let generateBtn = document.getElementById("generate")
 
 translateBtn.addEventListener("click", () => {
-  let text = userInput.value
+  let text = userInput.value.trim()
   translatedPara.innerHTML = pigLatin(text)
 })
 
@@ -65,9 +65,9 @@ function transformEachWord(word) {
   if (PunctuationsArr) {
     for (let i = 0; i < PunctuationsArr.length; i++) {
       const index = translatedWord.indexOf(PunctuationsArr[i])
-      translatedWord = `${translatedWord.slice(0, index)}${translatedWord.slice(
-        index + 1
-      )}${translatedWord[index]}`
+      if (index > -1) {
+        translatedWord = `${translatedWord.slice(0,index)}${translatedWord.slice(index + 1)}${translatedWord[index]}`
+      }
     }
   }
 
@@ -79,7 +79,7 @@ function detectPunctuation(word) {
   const puctuationRegex = /[!"#$%&'()*+,-./:;=?@[\]^_`{|}~]/g
 
   const punctuations = word.match(puctuationRegex)
-  return punctuations.length > 0 ? punctuations : []
+  return punctuations != null ? punctuations : []
 }
 
 //Generate random sentence
